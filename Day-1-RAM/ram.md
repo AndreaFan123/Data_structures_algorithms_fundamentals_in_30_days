@@ -69,7 +69,6 @@ An array of strings is a collection of strings stored in the memory cell. Let's 
   - Full form: Random Access Memory.
   - Temporary memory.
   - RAM is volatile memory, it loses data when the power is turned off.
-- ASCII
 
 ### Resources
 
