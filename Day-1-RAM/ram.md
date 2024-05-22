@@ -40,16 +40,37 @@ See the address of each element in the array, why thr sequence increases by 4 in
 
 ### The unit of RAM
 
-The unit of RAM is `byte`, which is the smallest unit of memory. The data is stored in the form of bytes in the RAM.
+The unit of RAM is `byte`, the data is stored in the form of bytes in the RAM.
 
-1 byte = 8 bits, a bit is the smallest unit of memory, we can think of it is a position in the memory cell.
+1 byte = 8 bits, a bit (as known as **Binary digit**) is the smallest unit of memory, we can think of it is a position in the memory cell.
 
-Let's circle back to the array example, the array `[1, 2, 3, 4, 5]`, each value takes 4 bytes in the memory cell, which is 32 bits, therefore it increases by 4 in the address.
+Let's circle back to the array example, the array `[1, 2, 3, 4, 5]`, each value takes 4 bytes (32 bits) in the memory cell, therefore it increases by 4 in the address.
 
-> [IMPORTANT] The address of the memory cell is not continuous, but the value are continuous.
+> ❗❗ The address of the value is not continuous, but the value are continuous.
 
 What about the array of strings? How does it store in the memory cell?
 
 ### Array of Strings
 
 An array of strings is a collection of strings stored in the memory cell. Let's say we have an array of `["apple", "banana", "cherry"]`, in ASCII, one character takes **1 byte**, therefore "apple" means 5 bytes, "banana" means 6 bytes, and "cherry" means 6 bytes, even though the address of each element is not continuous, but the address of the value is determined by the number of bytes it takes.
+
+---
+
+### Big words
+
+- Bit
+  - Binary digit.
+  - 2 number system (0, 1).
+  - All data is stored in the form of bits.
+  - e.g. 110, this is a 3-bit number.
+- Byte
+  - 1 byte = 11001100 (8 bits).
+- RAM
+  - Full form: Random Access Memory.
+  - Temporary memory.
+  - RAM is volatile memory, it loses data when the power is turned off.
+- ASCII
+
+### Resources
+
+- NeetCode
