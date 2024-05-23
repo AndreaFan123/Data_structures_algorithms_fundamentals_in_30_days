@@ -5,72 +5,120 @@
 ## Table of Contents
 
 - [What is RAM](#what-is-ram)
+- [What compose RAM?](#what-compose-ram)
 - [Basic units of storage](#basic-units-of-storage)
-- [Components of RAM](#components-of-ram)
-- [Array](#array)
-- [The unit of RAM](#the-unit-of-ram)
-- [Array of Strings](#array-of-strings)
-- [Big words](#big-words)
-
----
+- [What Kind of Data is Stored in RAM?](#what-kind-of-data-is-stored-in-ram)
+- [Characteristics of an array in JavaScript](#characteristics-of-an-array-in-javascript)
 
 ### What is RAM
 
-Ram also known as **Random Access Memory**. It is a type of computer memory that can be accessed randomly. In other words, any byte of memory can be accessed without touching the preceding bytes. Ram is the most common type of memory found in computers and other devices, such as printers.
+Ram also known as **Random Access Memory**. It is a type of computer memory that can be accessed randomly.The opposite of RAM is **ROM**, it is **Read Only Memory**.
+
+RAM is volatile memory, it loses data when the power is turned off. The term **Random Access** is crucial when we talk about storage.
+
+### What compose RAM?
+
+- **DRAM:**
+
+  - Dynamic Random Access Memory.
+  - Requires periodic refreshing to retain data.
+  - Highly storage density and lower cost, making it widely used as the main memory in computers.
+
+- **SRAM:**
+
+  - Static Random Access Memory.
+  - Does not require refreshing.
+  - Faster and more reliable than DRAM.
+  - Used for cache memory.
+
+- **Memory Cell:**
+
+  - Basic storage unit in RAM called bit, also as known as binary digit.
+  - A bit has a single binary value, either 0 or 1.
+
+- **Address Decoder:**
+  - Each memory cell has a unique address, which allows the CPU or other controllers to randomly access specific memory cells.
+  - Used to identify and access specific memory locations, thereby reading or writing data.
 
 ### Basic units of storage
 
-The basic unit of storage in computer data storage is called a `bit` (short for `binary digit`). A bit has a single binary value, either `0` or `1`.
-
 In most computer systems, a `byte` is a unit of data that is eight binary digits long. Bytes are often used to represent a character such as a letter, number, or typographic symbol.
-
-### Components of RAM
-
-1. **Memory Cells**: Each cell is made up of one bit of data storage.
-2. **Address Decoder**: The address decoder is used to select the memory cell to be read or written.
 
 ![ram](./ram.png)
 
-### Array
+### What Kind of Data is Stored in RAM?
 
-An array is a data structure that contains a group of elements, let's say we have an array of `[1, 2, 3, 4, 5]`, when it stores in the RAM, it looks like this:
+- Variables
+- Functions
+- Stack
+- Heap
+
+We will not be addressing this for now, but in JavaScript, data types like primitive data types (number, string, boolean…etc), composite data types (object), these are stores in RAM in order to quick access and modify.
 
 ![array-ram](./array-ram.png)
 
-See the address of each element in the array, why thr sequence increases by 4 in the address?
+Ok, let's move forward to the important part of the series - ** arrays**.
 
-### The unit of RAM
+When we declare an array, like we mentioned above, it will be stored in RAM, let's say `[1, 2, 3, 4, 5]`, in JavaScript, each number is represented as **64 bit**, which is **8 byte**.
 
-The unit of RAM is `byte`, the data is stored in the form of bytes in the RAM.
+Do you know how many bytes these variables occupy in memory?
 
-1 byte = 8 bits, a bit (as known as **Binary digit**) is the smallest unit of memory, we can think of it is a position in the memory cell.
+```js
+let num = 23; // 8 byte
+let arr = [1, 2, 3, 4, 5, 6]; // 8 byte * 6 = 48 byte
+```
 
-Let's circle back to the array example, the array `[1, 2, 3, 4, 5]`, each value takes 4 bytes (32 bits) in the memory cell, therefore it increases by 4 in the address.
-
-> ❗❗ The address of the value is not continuous, but the value are continuous.
-
-What about the array of strings? How does it store in the memory cell?
-
-### Array of Strings
-
-An array of strings is a collection of strings stored in the memory cell. Let's say we have an array of `["apple", "banana", "cherry"]`, in ASCII, one character takes **1 byte**, therefore "apple" means 5 bytes, "banana" means 6 bytes, and "cherry" means 6 bytes, even though the address of each element is not continuous, but the address of the value is determined by the number of bytes it takes.
+Values stored in RAM are contiguous, but not necessarily at consecutive addresses. In short, we won't always be able to allocate their positions in memory continuously. Remember that I mentioned the term 'Random Access' is crucial; here is why.
 
 ---
 
-### Big words
+### Characteristics of an array in JavaScript
 
-- Bit
-  - Binary digit.
-  - 2 number system (0, 1).
-  - All data is stored in the form of bits.
-  - e.g. 110, this is a 3-bit number.
-- Byte
-  - 1 byte = 11001100 (8 bits).
-- RAM
-  - Full form: Random Access Memory.
-  - Temporary memory.
-  - RAM is volatile memory, it loses data when the power is turned off.
+- Dynamic
+  - We already know that when we declare an array, it will be stored in RAM, and it is **dynamic (size (length) can be adjusted dynamically)**, unlike low-level languages like `C` or `C++`, they need to be defined how long an array should be before using it.
+- Duplicated
 
-### Resources
+  - Arrays can store duplicate values, e.g., `[1, 1, 2, 3, 4]`.
 
-- NeetCode
+- Mixed Types
+  - Arrays can store mixed types of values, e.g., `[1, 'hello', true, 3.14]`.
+
+Whether you define an array using JavaScript or other languages, just remember that array is easy to read via index (if we know the index of a specific value), but because of the random address, it is hard to write or delete.
+
+With characteristics mentioned above, once the array keeps growing, it increase the intensity of all CRUD actions, try to imagine if we have an array with 1000 elements, if we want tp perform CRUD actions, here are the steps:
+
+- Read:
+  - We know the index, so we can access the value directly. e.g., `arr[0]`.
+  - If we don't know the index, we need to loop through the array to find the value.
+  - No matter how long the array is, the time we need to read the value is always the same, which is **O(1)**, which is constant time.
+
+Because values of an array are contiguous in memory, if we try to update, delete or insert a value, we need to move element to keep its contiguous,this sort of operations increase the time complexity, which is **O(n)**, which is linear time.
+
+```js
+const arr = ["John", "Alice", "David", "Luke"];
+
+// Get all values
+for (const ele of arr) {
+  console.log("Value in arr:", ele);
+}
+
+// Allows to duplicate value
+arr.push("Luke");
+
+console.log("Array in JS allows duplicated value", arr); //Array in JS allows duplicated value [ 'John', 'Alice', 'David', 'Luke', 'Luke' ]
+
+// Read value using index
+const aliceIndx = arr.findIndex((el) => el === "Alice");
+
+console.log("Alice is at index of:", aliceIndx); // Alice is at index of: 1
+
+// Updating David to Dave
+const davidIndex = arr.findIndex((el) => el === "David");
+arr[davidIndex] = "Dave";
+console.log("Updated array:", arr);
+
+// Deleting ALice
+const aliceIndex = arr.findIndex((el) => el === "Alice");
+arr.splice(aliceIndex, 1);
+console.log("Deleted Alice:", arr);
+```
