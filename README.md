@@ -21,8 +21,8 @@ Main language I will be using is JavaScript, but I will be using Python for some
 
 Topics covered:
 
-- [ ] Binary Numbers
-- [ ] Hexadecimal
+- [x] Binary Numbers
+- [x] Hexadecimal
 
 #### Data Representation
 
