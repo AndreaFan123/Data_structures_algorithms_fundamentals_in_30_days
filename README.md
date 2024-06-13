@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository contains the basic fundamental concepts of computer science. My goal is to learn and understand the basic concepts of computer science in 30 days. I will be updating this repository daily with the concepts I learn.
+This repository contains the basic fundamental concepts of computer science and data structure & algorithms.
 
 Some of topics are big and will take more than a day to learn, and I don't want to learn it in a hurry and under pressure, cuz that would have ruined the whole purpose and joy of learning. Also I won't be covered all topics, so below is the list of topics I think it's important for frontend developers to know.:
 
@@ -13,6 +13,8 @@ The resources I will be using to learn are:
 
 Main language I will be using is JavaScript, but I will be using Python for some topics.
 
+---
+
 ### Data Representation
 
 #### Binary & Hexadecimal
@@ -20,24 +22,19 @@ Main language I will be using is JavaScript, but I will be using Python for some
 Topics covered:
 
 - [ ] Binary Numbers
-- [ ] Negative Numbers in Binary
 - [ ] Hexadecimal
-- [ ] Binary Addition
-- [ ] Binary shifts and overflow
 
 #### Data Representation
 
 Topics covered:
 
 - [ ] ASCII and Unicode
-- [ ] B&W Images
-- [ ] Grayscale Images
-- [ ] Color Images
 - [ ] Data Compression
-- [ ] Sound Compression
 - [ ] Binary and Denary Prefixes
 - [ ] Calculating Bit Depths
 - [ ] Calculating File Sizes
+
+---
 
 ### Networking & The internet
 
@@ -51,20 +48,6 @@ Topics covered:
 - [ ] Network Speeds
 - [ ] Network Protocols
 
-- [ ] Wired Networks
-- [ ] Wireless Networks
-
-#### Wired Networks
-
-- [ ] Wired Networks
-- [ ] Network Hardware
-
-#### Wireless Networks
-
-- [ ] Wireless Networks
-- [ ] Wireless Network Hardware
-- [ ] Mobile communication standards
-
 #### Internet & WWW
 
 - [ ] Internet vs WWW
@@ -77,15 +60,13 @@ Topics covered:
 - [ ] Viruses
 - [ ] Malware
 - [ ] Phishing
-- [ ] Spyware
 - [ ] DDOS Attacks
 - [ ] Brute force Attacks
 - [ ] SQL Injection
-- [ ] Insider Attacks
 - [ ] Social Engineering
-- [ ] Physical Network Attacks
-- [ ] Botnets
 - [ ] Protection Network
+
+---
 
 ### Problem Solving & Algorithms
 
@@ -99,32 +80,49 @@ Topics covered:
 #### Data Structures
 
 - [ ] Memory
-- [ ] Pointers
-- [ ] References
-- [ ] Static vs Dynamic arrays
-- [ ] Struct
 - [ ] Stack
 - [ ] Queue
 - [ ] Linked List
+- [ ] Hash Tables
 - [ ] Trees
 - [ ] Graphs
-- [ ] Hash Tables
+- [ ] Heaps
+- [ ] Stacks and Queues
 
-#### Searching Algorithms
+#### Recursion
 
+- [ ] Recursion
+- [ ] Base Case & Recursive Case
+- [ ] Structure of a recursive function & stack trace
+- [ ] Comparing recursive and iterative solutions
+- [ ] Recursion in real life
+- [ ] Tail Recursion
+- [ ] Avoiding stack overflow
+
+#### Classic Recursion Problems
+
+##### Classic Recursion Problems
+
+- [ ] Factorial
+- [ ] Fibonacci
+- [ ] Tower of Hanoi
+- [ ] Greatest Common Divisor(GCD)
+
+##### Arrays and strings
+
+- [ ] Array Sum
+- [ ] Reverse a string
+- [ ] Palindrome
+- [ ] Permutations
+- [ ] Subsets
+
+#### Algorithms
+
+- [ ] Big O Notation
 - [ ] Linear Search
 - [ ] Binary Search
 - [ ] Bubble Sort
+- [ ] Selection Sort
+- [ ] Insertion Sort
 - [ ] Merge Sort
 - [ ] Quick Sort
-- [ ] Insertion Sort
-- [ ] Selection Sort
-
-#### Algorithm Efficiency
-
-- [ ] Efficiency
-- [ ] Big O Notation
-- [ ] Linear vs Binary Search
-- [ ] Bubble vs Merge Sort
-- [ ] Quick vs Insertion Sort
-- [ ] Selection Sort
