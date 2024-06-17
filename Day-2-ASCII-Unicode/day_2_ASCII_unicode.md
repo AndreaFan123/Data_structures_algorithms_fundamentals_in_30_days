@@ -14,6 +14,12 @@
 - [Some examples](#some-practical-examples)
 - [Real World Scenarios](#real-world-scenarios)
 - [In what scenarios we might need to use methods in JavaScript to convert from one encoding to UTF-8?](#in-what-scenarios-we-might-need-to-use-methods-in-javascript-to-convert-from-one-encoding-to-utf-8)
+  - [When we deal with data from backend services that are not encoded in UTF-8](#when-we-deal-with-data-from-backend-services-that-are-not-encoded-in-utf-8)
+  - [When dealing the files that are uploaded by users](#when-dealing-the-files-that-are-uploaded-by-users)
+  - [Deal with multiple languages in a single application](#deal-with-multiple-languages-in-a-single-application)
+  - [Deal with WebSocket data](#deal-with-websocket-data)
+  - [Local storage](#local-storage)
+  - [Deal with api responses](#deal-with-api-responses)
 
 ### What is ASCII?
 
@@ -111,82 +117,82 @@ Let's breaking down each of them:
 
 ### In what scenarios we might need to use methods in JavaScript to convert from one encoding to UTF-8?
 
-- When we deal with data from backend services that are not encoded in `UTF-8`.
+#### When we deal with data from backend services that are not encoded in `UTF-8`.
 
-  ```javascript
-  // Assume the data is encoded in other encoding
-  const res = await fetch("https://api.example.com/data");
+```javascript
+// Assume the data is encoded in other encoding
+const res = await fetch("https://api.example.com/data");
 
-  // Convert the data to UTF-8
-  const data = await res.arrayBuffer();
+// Convert the data to UTF-8
+const data = await res.arrayBuffer();
+const decoder = new TextDecoder("UTF-8");
+const utf8Data = decoder.decode(data);
+```
+
+- `arrayBuffer()` object is used to represent aa generic raw binary data buffer. Check [ArrayBuffer]("https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer") on MDN.
+
+- `TextDecoder()` is a decoder for a specific encoding, in this case, we use `UTF-8`. Check [TextDecoder]("https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder") on MDN.
+- `TextDecoder.decode()` returns a string containing text decoded from the given `ArrayBuffer`. Check [TextDecoder.decode()](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder/decode) on MDN.
+
+#### When dealing the files that are uploaded by users.
+
+```javascript
+const file = document.getElementById("file").files[0];
+const reader = new FileReader();
+
+reader.onload = function (e) {
+  const data = e.target.result;
   const decoder = new TextDecoder("UTF-8");
   const utf8Data = decoder.decode(data);
-  ```
+};
 
-  - `arrayBuffer()` object is used to represent aa generic raw binary data buffer. Check [ArrayBuffer]("https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer") on MDN.
+reader.readAsArrayBuffer(file);
+```
 
-  - `TextDecoder()` is a decoder for a specific encoding, in this case, we use `UTF-8`. Check [TextDecoder]("https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder") on MDN.
-  - `TextDecoder.decode()` returns a string containing text decoded from the given `ArrayBuffer`. Check [TextDecoder.decode()](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder/decode) on MDN.
+- `FileReader()` is an object to read the content of files. Check [FileReader]("https://developer.mozilla.org/en-US/docs/Web/API/FileReader") on MDN.
+- `FileReader.readAsArrayBuffer()` starts reading the contents of the specified `Blob` or `File`. Check [FileReader.readAsArrayBuffer()](https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsArrayBuffer) on MDN.
 
-- When dealing the files that are uploaded by users.
+#### Deal with multiple languages in a single application.
 
-  ```javascript
-  const file = document.getElementById("file").files[0];
-  const reader = new FileReader();
+```javascript
+const data = "你好，世界！";
+const encoder = new TextEncoder();
+const utf8Data = encoder.encode(data);
+```
 
-  reader.onload = function (e) {
-    const data = e.target.result;
-    const decoder = new TextDecoder("UTF-8");
-    const utf8Data = decoder.decode(data);
-  };
+- `TextEncoder()` is an encoder for a specific encoding, in this case, we use `UTF-8`. Check [TextEncoder](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder) on MDN.
+- `TextEncoder.encode()` returns a `Uint8Array` containing the text encoded in the given encoding. Check [TextEncoder.encode()](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder/encode) on MDN.
 
-  reader.readAsArrayBuffer(file);
-  ```
+#### Deal with WebSocket data:
 
-  - `FileReader()` is an object to read the content of files. Check [FileReader]("https://developer.mozilla.org/en-US/docs/Web/API/FileReader") on MDN.
-  - `FileReader.readAsArrayBuffer()` starts reading the contents of the specified `Blob` or `File`. Check [FileReader.readAsArrayBuffer()](https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsArrayBuffer) on MDN.
-
-- Deal with multiple languages in a single application.
-
-  ```javascript
-  const data = "你好，世界！";
-  const encoder = new TextEncoder();
-  const utf8Data = encoder.encode(data);
-  ```
-
-  - `TextEncoder()` is an encoder for a specific encoding, in this case, we use `UTF-8`. Check [TextEncoder]("https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder") on MDN.
-  - `TextEncoder.encode()` returns a `Uint8Array` containing the text encoded in the given encoding. Check [TextEncoder.encode()](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder/encode) on MDN.
-
-- Deal with WebSocket data:
-
-  ```javascript
-  const socket = new WebSocket("wss://api.example.com");
-  socket.onmessage = function (event) {
-    const data = event.data;
-    const decoder = new TextDecoder("UTF-8");
-    const utf8Data = decoder.decode(data);
-  };
-  ```
-
-  - `WebSocket` is a communication protocol that provides full-duplex communication channels over a single `TCP` connection. Check [WebSocket]("https://developer.mozilla.org/en-US/docs/Web/API/WebSocket") on MDN.
-
-- Local storage:
-
-  ```javascript
-  const data = localStorage.getItem("data");
+```javascript
+const socket = new WebSocket("wss://api.example.com");
+socket.onmessage = function (event) {
+  const data = event.data;
   const decoder = new TextDecoder("UTF-8");
   const utf8Data = decoder.decode(data);
-  ```
+};
+```
 
-  - `localStorage.getItem()` gets the value of the specified `Storage` object item. Check [localStorage.getItem()](https://developer.mozilla.org/en-US/docs/Web/API/Storage/getItem) on MDN.
+- `WebSocket` is a communication protocol that provides full-duplex communication channels over a single `TCP` connection. Check [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) on MDN.
 
-- Deal with api responses:
+#### Local storage:
 
-  ```javascript
-  const res = await fetch("https://api.example.com/data");
-  const data = await res.arrayBuffer();
-  const decoder = new TextDecoder("UTF-8");
-  const utf8Data = decoder.decode(data);
-  ```
+```javascript
+const data = localStorage.getItem("data");
+const decoder = new TextDecoder("UTF-8");
+const utf8Data = decoder.decode(data);
+```
 
-  - `fetch()` is used to make network requests similar to `XMLHttpRequest`. Check [fetch()](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) on MDN.
+- `localStorage.getItem()` gets the value of the specified `Storage` object item. Check [localStorage.getItem()](https://developer.mozilla.org/en-US/docs/Web/API/Storage/getItem) on MDN.
+
+#### Deal with api responses:
+
+```javascript
+const res = await fetch("https://api.example.com/data");
+const data = await res.arrayBuffer();
+const decoder = new TextDecoder("UTF-8");
+const utf8Data = decoder.decode(data);
+```
+
+- `fetch()` is used to make network requests similar to `XMLHttpRequest`. Check [fetch()](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) on MDN.
