@@ -28,7 +28,7 @@ Topics covered:
 
 Topics covered:
 
-- [ ] ASCII and Unicode
+- [x] ASCII and Unicode
 - [ ] Data Compression
 - [ ] Binary and Denary Prefixes
 - [ ] Calculating Bit Depths
