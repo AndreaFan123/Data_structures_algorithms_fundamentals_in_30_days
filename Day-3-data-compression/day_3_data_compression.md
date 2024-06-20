@@ -45,7 +45,7 @@ In order to improve the performance of a website, data compression plays a cruci
 
 #### Image Compression
 
-Images are the most common type of data, we can try to reduce image size, lower the quality of the image or change the format of the image.
+Images are the most common type of data, we can try to reduce image size, lower the quality of the image or change the format of the image, check [Web.dev - Image Performance](https://web.dev/learn/performance/image-performance) for more information.
 
 - Lossless Compression: It describes a pixel based on the difference from its neighboring pixels, it is used in PNG, GIF, WebP and AVIF.
 - Lossy Compression: It's effective on high-density images with lots of noise and colors, but less effective with imagery containing sharp edges such as line art or text, this can be applied to JPEG, WebP and AVIF.
